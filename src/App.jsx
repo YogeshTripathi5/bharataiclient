@@ -55,7 +55,7 @@ function App() {
 
     try {
       const response = await axios.post(
-        '/api/ask?customer_id=test_customer_2',
+        'https://bharatai-appengine-caaxhrhbghb2brf3.centralindia-01.azurewebsites.net/ask?customer_id=test_customer_2',
         { question: userMessage.content },
         { headers: { 'Content-Type': 'application/json' } }
       );
