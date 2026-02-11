@@ -10,6 +10,7 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [fileDropdownOpen, setFileDropdownOpen] = useState(false);
   const [selectedFileText, setSelectedFileText] = useState('All');
+  const [conversationId, setConversationId] = useState(null);
   
   const chatEndRef = useRef(null);
   const textareaRef = useRef(null);
@@ -54,11 +55,21 @@ function App() {
     }
 
     try {
+      const payload = { question: userMessage.content };
+      if (conversationId) {
+        payload.conversation_id = conversationId;
+      }
+
       const response = await axios.post(
         'https://bharatai-appengine-caaxhrhbghb2brf3.centralindia-01.azurewebsites.net/ask?customer_id=test_customer_2',
-        { question: userMessage.content },
+        payload,
         { headers: { 'Content-Type': 'application/json' } }
       );
+
+      // Capture conversation_id if present
+      if (response.data && response.data.conversation_id) {
+        setConversationId(response.data.conversation_id);
+      }
 
       // Assuming the API returns a JSON with an 'answer' or similar field.
       // If the structure is different, this might need adjustment.
