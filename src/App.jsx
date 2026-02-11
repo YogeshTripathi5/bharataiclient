@@ -11,7 +11,7 @@ function App() {
   const [fileDropdownOpen, setFileDropdownOpen] = useState(false);
   const [selectedFileText, setSelectedFileText] = useState('All');
   const [conversationId, setConversationId] = useState(null);
-  
+
   const chatEndRef = useRef(null);
   const textareaRef = useRef(null);
 
@@ -48,7 +48,7 @@ function App() {
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setLoading(true);
-    
+
     // Reset textarea height
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
@@ -75,7 +75,7 @@ function App() {
       // If the structure is different, this might need adjustment.
       // Based on common patterns, I'll check for 'answer', 'response', or just stringify if object.
       let assistantContent = "No response content";
-      
+
       if (response.data && typeof response.data === 'string') {
         assistantContent = response.data;
       } else if (response.data && response.data.answer) {
@@ -90,9 +90,9 @@ function App() {
       setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
       console.error('API Error:', error);
-      const errorMessage = { 
-        role: 'assistant', 
-        content: `Error: ${error.message}. Please try again.` 
+      const errorMessage = {
+        role: 'assistant',
+        content: `Error: ${error.message}. Please try again.`
       };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
@@ -153,7 +153,7 @@ function App() {
 
       {/* Main Content */}
       <div className="main-content">
-        
+
         {/* Persistent Header */}
         <div style={{ textAlign: 'center', marginBottom: '20px', flexShrink: 0 }}>
           <div style={{ backgroundColor: '#000', display: 'inline-block', padding: '10px 20px', borderRadius: '12px' }}>
@@ -167,7 +167,7 @@ function App() {
             <div key={index} className={`message ${msg.role}`}>
               {msg.role === 'assistant' && (
                 <div className="avatar" style={{ width: '28px', height: '28px', minWidth: '28px' }}>
-                   <span style={{ fontWeight: 900, fontSize: '10px', background: 'linear-gradient(to bottom right, #FF9933, #FFFFFF, #138808)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>BAI</span>
+                  <span style={{ fontWeight: 900, fontSize: '10px', background: 'linear-gradient(to bottom right, #FF9933, #FFFFFF, #138808)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>BAI</span>
                 </div>
               )}
               <div className="message-content">
@@ -180,59 +180,59 @@ function App() {
             </div>
           ))}
           {loading && (
-             <div className="message assistant">
-                <div className="avatar" style={{ width: '28px', height: '28px', minWidth: '28px' }}>
-                   <span style={{ fontWeight: 900, fontSize: '10px', background: 'linear-gradient(to bottom right, #FF9933, #FFFFFF, #138808)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>BAI</span>
+            <div className="message assistant">
+              <div className="avatar" style={{ width: '28px', height: '28px', minWidth: '28px' }}>
+                <span style={{ fontWeight: 900, fontSize: '10px', background: 'linear-gradient(to bottom right, #FF9933, #FFFFFF, #138808)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>BAI</span>
+              </div>
+              <div className="message-content">
+                <div className="typing-indicator">
+                  <div className="dot"></div>
+                  <div className="dot"></div>
+                  <div className="dot"></div>
                 </div>
-                <div className="message-content">
-                    <div className="typing-indicator">
-                        <div className="dot"></div>
-                        <div className="dot"></div>
-                        <div className="dot"></div>
-                    </div>
-                </div>
-             </div>
+              </div>
+            </div>
           )}
           <div ref={chatEndRef} />
         </div>
 
         {messages.length === 0 && (
-            <div id="initialView">
-                <div className="greeting-container">
-                    <h1 className="greeting-title" style={{ color: '#000' }}>
-                        Hey Vamika 👋 What can I help with?
-                    </h1>
-                </div>
-
-                <div className="cards-grid">
-                     <div className="prompt-card" onClick={() => handleCardClick("Help me draft a response to a difficult client email")}>
-                        <div className="card-icon"><i className="fa-regular fa-envelope"></i></div>
-                        <div className="card-text">Help me draft a response to a difficult client email</div>
-                    </div>
-                    <div className="prompt-card" onClick={() => handleCardClick("Create a launch plan for our new feature")}>
-                        <div className="card-icon"><i className="fa-solid fa-rocket"></i></div>
-                        <div className="card-text">Create a launch plan for our new feature</div>
-                    </div>
-                    <div className="prompt-card" onClick={() => handleCardClick("Analyze this quarterly report data")}>
-                        <div className="card-icon"><i className="fa-solid fa-chart-pie"></i></div>
-                        <div className="card-text">Analyze this quarterly report data</div>
-                    </div>
-                    <div className="prompt-card" onClick={() => handleCardClick("Write a blog post about AI trends")}>
-                        <div className="card-icon"><i className="fa-solid fa-pen-nib"></i></div>
-                        <div className="card-text">Write a blog post about AI trends</div>
-                    </div>
-                </div>
+          <div id="initialView">
+            <div className="greeting-container">
+              <h1 className="greeting-title" style={{ color: '#000' }}>
+                Hey Vamika 👋 What can I help with?
+              </h1>
             </div>
+
+            <div className="cards-grid">
+              <div className="prompt-card" onClick={() => handleCardClick("Help me draft a response to a difficult client email")}>
+                <div className="card-icon"><i className="fa-regular fa-envelope"></i></div>
+                <div className="card-text">Help me draft a response to a difficult client email</div>
+              </div>
+              <div className="prompt-card" onClick={() => handleCardClick("Create a launch plan for our new feature")}>
+                <div className="card-icon"><i className="fa-solid fa-rocket"></i></div>
+                <div className="card-text">Create a launch plan for our new feature</div>
+              </div>
+              <div className="prompt-card" onClick={() => handleCardClick("Analyze this quarterly report data")}>
+                <div className="card-icon"><i className="fa-solid fa-chart-pie"></i></div>
+                <div className="card-text">Analyze this quarterly report data</div>
+              </div>
+              <div className="prompt-card" onClick={() => handleCardClick("Write a blog post about AI trends")}>
+                <div className="card-icon"><i className="fa-solid fa-pen-nib"></i></div>
+                <div className="card-text">Write a blog post about AI trends</div>
+              </div>
+            </div>
+          </div>
         )}
 
         {/* Chat Input */}
         <div className="chat-container">
           <div className="input-wrapper">
             <div className="input-top">
-              <textarea 
+              <textarea
                 ref={textareaRef}
-                className="chat-input" 
-                placeholder="Message BharatAI" 
+                className="chat-input"
+                placeholder="Message BharatAI"
                 rows="1"
                 value={input}
                 onChange={handleInputChange}
@@ -254,8 +254,8 @@ function App() {
                   <i className="fa-solid fa-paperclip"></i> <span>Upload Attachment</span>
                 </button>
               </div>
-              <button 
-                className="send-btn" 
+              <button
+                className="send-btn"
                 onClick={sendMessage}
                 disabled={loading || !input.trim()}
               >
