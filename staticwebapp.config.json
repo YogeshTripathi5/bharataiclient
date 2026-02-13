@@ -1,0 +1,13 @@
+{
+  "routes": [
+    {
+      "route": "/api/*",
+      "rewrite": "https://bharatai-appengine-caaxhrhbghb2brf3.centralindia-01.azurewebsites.net/api/:path*"
+    }
+  ],
+  "forwardingGateway": {
+    "requiredHeaders": [
+      "*"
+    ]
+  }
+}
