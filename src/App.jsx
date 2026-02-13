@@ -29,17 +29,7 @@ function App() {
     e.target.style.height = `${e.target.scrollHeight}px`;
   };
 
-  const handleCardClick = (text) => {
-    setInput(text);
-    if (textareaRef.current) {
-      textareaRef.current.focus();
-      // We need to wait a tick for the value to update before resizing
-      setTimeout(() => {
-        textareaRef.current.style.height = 'auto';
-        textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
-      }, 0);
-    }
-  };
+
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -204,24 +194,7 @@ function App() {
               </h1>
             </div>
 
-            <div className="cards-grid">
-              <div className="prompt-card" onClick={() => handleCardClick("Help me draft a response to a difficult client email")}>
-                <div className="card-icon"><i className="fa-regular fa-envelope"></i></div>
-                <div className="card-text">Help me draft a response to a difficult client email</div>
-              </div>
-              <div className="prompt-card" onClick={() => handleCardClick("Create a launch plan for our new feature")}>
-                <div className="card-icon"><i className="fa-solid fa-rocket"></i></div>
-                <div className="card-text">Create a launch plan for our new feature</div>
-              </div>
-              <div className="prompt-card" onClick={() => handleCardClick("Analyze this quarterly report data")}>
-                <div className="card-icon"><i className="fa-solid fa-chart-pie"></i></div>
-                <div className="card-text">Analyze this quarterly report data</div>
-              </div>
-              <div className="prompt-card" onClick={() => handleCardClick("Write a blog post about AI trends")}>
-                <div className="card-icon"><i className="fa-solid fa-pen-nib"></i></div>
-                <div className="card-text">Write a blog post about AI trends</div>
-              </div>
-            </div>
+
           </div>
         )}
 
